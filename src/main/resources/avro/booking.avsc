@@ -1,0 +1,12 @@
+{
+    "type": "record",
+    "name": "Booking",
+    "namespace": "com.telikos.booking",
+    "fields": [{
+        "name": "bookingId",
+        "type": "string"
+    }, {
+        "name": "product",
+        "type": "string"
+    }]
+}

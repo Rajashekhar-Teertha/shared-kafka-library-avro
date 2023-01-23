@@ -1,0 +1,48 @@
+
+kafka:
+  bootstrap-servers: "localhost:29092"
+  client-id:
+  username:
+  password:
+  consumer:
+    topic: test-topic-1
+    consumer-group: telikos
+    offset-auto-reset: earliest
+    max-poll-records: 5
+    max-poll-timeout: 5000
+    max-fetch-size-bytes: 2097164
+
+  schema-registry:
+    url: "http://localhost:8081"
+    username:
+    password:
+
+  polling.timeout: 10000
+server:
+  port: 8888
+
+management:
+  health:
+    kafka:
+      enabled: true
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+  endpoint:
+    prometheus:
+      enabled: true
+    health:
+      show-details: always
+      probes:
+        enabled: true
+      group:
+        readiness:
+          include: "readinessState,diskSpace,ping,kafka"
+          show-details: always
+
+  endpoints:
+    web:
+      exposure:
+        include: health, info, prometheus
+
