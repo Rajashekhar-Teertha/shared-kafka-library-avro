@@ -22,12 +22,12 @@ public class KafkaConsumer {
    * Kafka listener to consume the messages
    * @return
    */
-  @EventListener(ApplicationStartedEvent.class)
+ // @EventListener(ApplicationStartedEvent.class)
   public Disposable startKafkaConsumer() {
     log.info("inside consumer class ...");
     return kafkaReceiver
         .receive()
-        .doOnNext(booking -> log.info("consumed successfully test-topic-1 {} ", booking))
+        .doOnNext(booking -> log.info("consumed successfully test-topic-1 "))
         .doOnError(error -> log.error("Error receiving booking event, will retry", error))
         .retryWhen(Retry.fixedDelay(Long.MAX_VALUE, Duration.ofMinutes(1)))
         .subscribe(receiverRecord -> receiverRecord.receiverOffset().acknowledge());
